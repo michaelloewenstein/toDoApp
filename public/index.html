@@ -21,6 +21,7 @@
 	<!-- SPELLS -->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
 	<script src="mainController.js"></script>
+	<script src="bower_components\socket.io-client\socket.io.js"></script>
 
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE FUNCTION -->
@@ -29,9 +30,13 @@
 
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length }}</span></h1>
+			<h1>I'm a Todo <span class="label label-info">{{ todos.length }}</span></h1>
 		</div>
-
+		
+		<div class="text-center text-muted">
+			<p>Did you know? {{catFact}}</p>
+			</div>
+		
 		<!-- TODO LIST -->
 		<div id="todo-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
@@ -63,8 +68,8 @@
 		</div>
 
 		<div class="text-center text-muted">
-			<p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
-			<p>Read the <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular">tutorial</a>.</p>
+			<p>A demo by <a href="https://www.linkedin.com/pub/michael-loewenstein/22/9a5/713">Michael Loewenstein</a>.</p>
+			<!-- <p>Read the <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular"> tutorial</a>.</p>-->
 		</div>
 
 	</div>

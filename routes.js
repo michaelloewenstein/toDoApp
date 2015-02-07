@@ -12,6 +12,17 @@ module.exports = function(app)
 		});
 	});
 
+	app.get('/api/todos/:name', function(req,res)
+	{
+		var name = req.params.name;
+
+		Todo.find({text:name},function(err,todos)
+		{
+			if(err)
+				res.send(err);
+			res.json(todos);
+		});
+	});
 	app.post('/api/todos',function(req,res)
 	{
 		Todo.create({text: req.body.text, done:false},function(err,todos)
@@ -27,11 +38,6 @@ module.exports = function(app)
 		});
 	});
 
-	 app.get('', function(req, res)
-	{
-        res.sendfile('./public/index.html');
-    });
-
 	app.delete('/api/todos/:todo_id', function(req, res) {
         Todo.remove({
             _id : req.params.todo_id
@@ -46,5 +52,39 @@ module.exports = function(app)
             });
         });
     }); 
+
+	app.get('/api/catFact', function(req,res)
+	{
+		var options = {
+			  host: 'www.catfacts-api.appspot.com',
+			  path: '/api/facts'
+			};
+		
+			var http = require('http');
+
+				
+		callback = function(response) {
+				 var str = '';
+
+				 //another chunk of data has been recieved, so append it to `str`
+				 response.on('data', function (chunk) {
+				   str += chunk;
+				 });
+
+				 //the whole response has been recieved, so we just print it out here
+				 response.on('end', function () {
+				   
+				   res.json(str);
+				 });
+				
+			};
+			 http.request(options, callback).end();
+
+
+	});
+	 app.get('', function(req, res)
+	{
+        res.sendfile('./public/index.html');
+    });
 
 };
